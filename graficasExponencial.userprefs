@@ -1,8 +1,8 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\scripts\Indicadores.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\scripts\crearExponencial.cs">
     <Files>
-      <File FileName="Assets\scripts\Indicadores.cs" Line="208" Column="3" />
+      <File FileName="Assets\scripts\crearExponencial.cs" Line="36" Column="15" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

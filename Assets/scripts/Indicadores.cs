@@ -9,21 +9,25 @@ public class Indicadores : MonoBehaviour {
 	public Animator animator;
 	public Text valores;
 	public Text valores2;
+	public Text valores3;
+	public Text valores4;
+
 	public GameObject vertice;
 	public GameObject intersepto1;
 	public Text intersepto1Texto;
 	public GameObject intersepto2;
 	public Text intersepto2Texto;
-	public GameObject sliders;
+	public GameObject[] sliders;
 	public Image botonFuncion;
 	public Image botonMenu;
 	public Image botonVertice;
 	public Image botonIntercepto;
 	public Image botonValores;
+	public Image botonExponencialImg;
 
-	public GameObject fondoVertice;
+	public GameObject fondoExponencial;
 	public GameObject fondointerceptos;
-	public GameObject fondoVertice2;
+	public GameObject fondoExponencial2;
 
 
 	public Sprite spriteMenuOn;
@@ -36,7 +40,8 @@ public class Indicadores : MonoBehaviour {
 	public Sprite slidersOff;
 	public Sprite funcionOn;
 	public Sprite funcionOff;
-
+	public Sprite exponencialOn;
+	public Sprite exponencialOff;
 
 	float a = 1;
 	float b = 0;
@@ -47,10 +52,10 @@ public class Indicadores : MonoBehaviour {
 	string funcion;
 
 	public bool banderaVertice = false;
-	public bool banderaFuncion = false;
+	public bool banderaExponencial = false;
 	public bool banderainterceptos = false;
 	public bool banderaSliders = true;
-
+	public bool banderaExponenteSlider = true;
 	public Text tm ;
 
 
@@ -81,19 +86,50 @@ public class Indicadores : MonoBehaviour {
 	}
 	public void activaSliders(){
 		if(banderaSliders){
-			sliders.SetActive(false);
+			sliders[0].SetActive(false);
+			sliders[1].SetActive(false);
 			banderaSliders = false;
 			botonValores.sprite = slidersOn;
 		}else{
-			sliders.SetActive(true);
+			if(banderaExponenteSlider){
+				sliders[0].SetActive(true);
+			}else{
+				sliders[1].SetActive(true);
+			}
 			banderaSliders = true;
 			botonValores.sprite = slidersOff;
 		}
 	}
+	public void exponenteSlider(){
 
+		if (banderaExponenteSlider) {
+			if (banderaSliders) {
+				sliders [0].SetActive (false);
+				sliders [1].SetActive (true);
+			}
+			if(banderaExponencial){
+				fondoExponencial.gameObject.SetActive(false);
+				fondoExponencial2.gameObject.SetActive(true);
+			}
+			banderaExponenteSlider = false;
+			botonExponencialImg.sprite = exponencialOff;
+		} else {
+			if (banderaSliders) {
+				sliders [0].SetActive (true);
+				sliders [1].SetActive (false);
+			}
+			if(banderaExponencial){
+				fondoExponencial.gameObject.SetActive(true);
+				fondoExponencial2.gameObject.SetActive(false);
+			}
+			banderaExponenteSlider = true;
+			botonExponencialImg.sprite = exponencialOn;
+		}
+
+	}
 
 	public void activaFuncion( ){
-		if(!banderaFuncion){
+		if(!banderaExponencial){
 
 			if(banderainterceptos){
 				activaIntersepto();
@@ -101,33 +137,46 @@ public class Indicadores : MonoBehaviour {
 			if(banderaVertice){
 				activaVertice();
 			}
+			if(banderaExponenteSlider){
+				fondoExponencial.gameObject.SetActive(true);
+				banderaExponencial = true;
+				banderainterceptos = false;
+				banderaVertice = false;
+				valores.text = "";
+				string funcion2="";
+				valores2.text = "";
+				funcion = "f(x) =  <color=#FFE600>"+a.ToString ("n2")+" </color>e";
+				funcion2= funcion2 + "<color=#00A7FF>"+b.ToString ("n2")+"</color>x"; 							
+				valores.text = valores.text + funcion;
+				valores2.text = valores2.text +funcion2;
+			}else{
+				fondoExponencial2.gameObject.SetActive(true);
+				banderaExponencial = true;
+				banderainterceptos = false;
+				banderaVertice = false;
+				valores3.text = "";
+				string funcion2 = "";
+				valores4.text = "";
+				funcion = "f(x) =  <color=#FFE600>" + a.ToString ("n2") + " </color>(<color=#00A7FF>" + b.ToString ("n2") + "</color>)";
+				funcion2 = funcion2 + "<color=#298A08>" + c.ToString ("n2") + "</color>x"; 
+				valores3.text = valores3.text + funcion;
+				valores4.text = valores4.text + funcion2;
+			}
 
-			fondoVertice.gameObject.SetActive(true);
-			banderaFuncion = true;
-			banderainterceptos = false;
-			banderaVertice = false;
-			valores.text = "";
-			string funcion2="";
-			valores2.text = "";
-			funcion = "f(x) =  <color=#FFE600>"+a.ToString ("n2")+" </color>e";
-			funcion2= funcion2 + "<color=#00A7FF>"+b.ToString ("n2")+"</color>x"; 
-		
-
-			valores.text = valores.text + funcion;
-			valores2.text = valores2.text +funcion2;
 			botonFuncion.sprite = funcionOff;
 
 		}else{
-			banderaFuncion = false;
+			banderaExponencial = false;
 			banderainterceptos = false;
 			banderaVertice = false;
 			botonFuncion.sprite = funcionOn;
-			fondoVertice.gameObject.SetActive(false);
+			fondoExponencial.gameObject.SetActive(false);
+			fondoExponencial2.gameObject.SetActive(false);
 		}
 	}
 	public void activaIntersepto( ){
 		if(!banderainterceptos){
-			if(banderaFuncion){
+			if(banderaExponencial){
 				activaFuncion();
 			}
 			if(banderaVertice){
@@ -156,14 +205,14 @@ public class Indicadores : MonoBehaviour {
 	}
 	public void activaVertice( ){
 		if(!banderaVertice){
-			if(banderaFuncion){
+			if(banderaExponencial){
 				activaFuncion();
 			}
 			if(banderainterceptos){
 				activaIntersepto();
 			}
 
-			fondoVertice2.gameObject.SetActive(true);
+			fondoExponencial2.gameObject.SetActive(true);
 			banderaVertice = true;
 			vertice.GetComponent<Animator>().enabled=true;
 			//tm = vertice.GetComponentInChildren<TextMesh>();
@@ -173,7 +222,7 @@ public class Indicadores : MonoBehaviour {
 		}else{
 			vertice.GetComponent<Animator>().enabled=false;
 			vertice.GetComponent<MeshRenderer>().enabled=true;
-			fondoVertice2.gameObject.SetActive(false);
+			fondoExponencial2.gameObject.SetActive(false);
 			tm.transform.gameObject.SetActive(false);
 			banderaVertice = false;
 			botonVertice.sprite = verticeOn;
@@ -198,16 +247,24 @@ public class Indicadores : MonoBehaviour {
 		crearGrafica();
 	}
 	public void crearGrafica(){
-		//if (banderaFuncion){
-
-		valores.text = "";
-		string funcion2="";
-		valores2.text = "";
-		funcion = "f(x) =  <color=#FFE600>"+a.ToString ("n2")+" </color>e";
-		funcion2= funcion2 + "<color=#00A7FF>"+b.ToString ("n2")+"</color>x"; 
-		valores.text = valores.text + funcion;
-		valores2.text = valores2.text +funcion2;
-
+		//if (banderaExponencial){
+		if (banderaExponenteSlider) {
+			valores.text = "";
+			string funcion2 = "";
+			valores2.text = "";
+			funcion = "f(x) =  <color=#FFE600>" + a.ToString ("n2") + " </color>e";
+			funcion2 = funcion2 + "<color=#00A7FF>" + b.ToString ("n2") + "</color>x"; 
+			valores.text = valores.text + funcion;
+			valores2.text = valores2.text + funcion2;
+		} else {
+			valores3.text = "";
+			string funcion2 = "";
+			valores4.text = "";
+			funcion = "f(x) =  <color=#FFE600>" + a.ToString ("n2") + " </color>(<color=#00A7FF>" + b.ToString ("n2") + "</color>)";
+			funcion2 = funcion2 + "<color=#298A08>" + c.ToString ("n2") + "</color>x"; 
+			valores3.text = valores3.text + funcion;
+			valores4.text = valores4.text + funcion2;
+		}
 	//	}
 
 
