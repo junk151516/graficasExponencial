@@ -4,6 +4,9 @@ using UnityEngine.UI;
 
 public class Indicadores : MonoBehaviour {
 
+	public Animator animSliders;
+
+	public bool PanelSlider_Mostrar=true;
 
 	public bool estado;
 	public Animator animator;
@@ -85,9 +88,12 @@ public class Indicadores : MonoBehaviour {
 		}
 	}
 	public void activaSliders(){
+		PanelSlider_Mostrar = !PanelSlider_Mostrar;
+		animSliders.SetBool ("PanelSlider_Mostrar", PanelSlider_Mostrar);
+		//animSliders2.SetBool ("PanelSlider_Mostrar", PanelSlider_Mostrar);
 		if(banderaSliders){
-			sliders[0].SetActive(false);
-			sliders[1].SetActive(false);
+			//sliders[0].SetActive(false);
+			//sliders[1].SetActive(false);
 			banderaSliders = false;
 			botonValores.sprite = slidersOn;
 		}else{
@@ -103,10 +109,11 @@ public class Indicadores : MonoBehaviour {
 	public void exponenteSlider(){
 
 		if (banderaExponenteSlider) {
-			if (banderaSliders) {
-				sliders [0].SetActive (false);
-				sliders [1].SetActive (true);
-			}
+			//if (banderaSliders) {
+			sliders [0].SetActive (false);
+			sliders [1].SetActive (true);				
+			//animSliders2.SetBool ("PanelSlider_Mostrar", PanelSlider_Mostrar);
+			//}
 			if(banderaExponencial){
 				fondoExponencial.gameObject.SetActive(false);
 				fondoExponencial2.gameObject.SetActive(true);
@@ -114,10 +121,11 @@ public class Indicadores : MonoBehaviour {
 			banderaExponenteSlider = false;
 			botonExponencialImg.sprite = exponencialOff;
 		} else {
-			if (banderaSliders) {
+			//if (banderaSliders) {
 				sliders [0].SetActive (true);
 				sliders [1].SetActive (false);
-			}
+			//	animSliders.SetBool ("PanelSlider_Mostrar", PanelSlider_Mostrar);
+			//}
 			if(banderaExponencial){
 				fondoExponencial.gameObject.SetActive(true);
 				fondoExponencial2.gameObject.SetActive(false);
