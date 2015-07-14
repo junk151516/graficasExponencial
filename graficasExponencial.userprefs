@@ -1,8 +1,10 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace />
-  <MonoDevelop.Ide.Workbench ActiveDocument="..\PreguntasExponencial\Assets\scripts\CudraticaGUI\CuadraticaCS.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\scripts\ControlPanelesPrincipales.cs">
     <Files>
-      <File FileName="..\PreguntasExponencial\Assets\scripts\CudraticaGUI\CuadraticaCS.cs" Line="110" Column="8" />
+      <File FileName="Assets\scripts\ControlPanelesPrincipales.cs" Line="1" Column="1" />
+      <File FileName="..\..\..\Desktop\GraficaCuadratica-master\Assets\scripts\cambioDinamico\cambiarTamanoTexto.cs" Line="1" Column="1" />
+      <File FileName="Assets\scripts\crearExponencial.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
