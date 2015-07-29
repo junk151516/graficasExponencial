@@ -31,12 +31,31 @@ public class crearExponencial : MonoBehaviour {
 	{
 		banderaExp = exponent.banderaExponenteSlider;
 		if (exponent.banderaExponenteSlider) {
-			return((a * Mathf.Exp (b * x)));
+			if((a * Mathf.Exp (b * x))<-290){
+				return -300;
+			}else{
+			if((a * Mathf.Exp (b * x))>290){
+				return 300;
+			}else{
+				return(a * Mathf.Exp (b * x));
+				}
+			}
+
+
 		} else {
-			return(a * Mathf.Pow(b, (c * x)));
+			if((a * Mathf.Pow(b, (c * x)))<-290){
+				return -300;
+			}else{
+
+			if((a * Mathf.Pow(b, (c * x)))>290){
+				return 300;
+			}else{
+				return(a * Mathf.Pow(b, (c * x)));
+				}
+			}
 		}
 
-
+	
 		//return((Mathf.Sin (a + b*x/10))*100);
 	}
 	
